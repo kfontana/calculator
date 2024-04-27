@@ -64,26 +64,46 @@ function clear() {
 
 function operatorFlagAdd() {
   operatorFlag = true;
-  operator = "add";
-  display.textContent = "";
+  if (operator != "add") {
+    firstValue = operate();
+    secondValue = [];
+    operator = "add";
+  } else {
+    operator = "add";
+  }
 }
 
 function operatorFlagSub() {
   operatorFlag = true;
-  operator = "substract";
-  display.textContent = "";
+  if (operator != "substract") {
+    firstValue = operate();
+    secondValue = [];
+    operator = "substract";
+  } else {
+    operator = "substract";
+  }
 }
 
 function operatorFlagMultiply() {
   operatorFlag = true;
-  operator = "multiply";
-  display.textContent = "";
+  if (operator != "multiply") {
+    firstValue = operate();
+    secondValue = [];
+    operator = "multiply";
+  } else {
+    operator = "multiply";
+  }
 }
 
 function operatorFlagDivide() {
   operatorFlag = true;
-  operator = "divide";
-  display.textContent = "";
+  if (operator != "divide") {
+    firstValue = operate();
+    secondValue = [];
+    operator = "divide";
+  } else {
+    operator = "divide";
+  }
 }
 
 function displayNumberOne() {
@@ -233,31 +253,52 @@ function operate() {
     return substract(firstValue, secondValue);
   } else if (operator === "multiply") {
     return multiply(firstValue, secondValue);
+  } else if (operator === "divide" && secondValue == 0) {
+    return (display.textContent = "Haha, nice try");
   } else if (operator === "divide") {
     return divide(firstValue, secondValue);
   }
+}
 
-  function add(firstValue, secondValue) {
+function add(firstValue, secondValue) {
+  if (Array.isArray(firstValue)) {
     firstValue = parseInt(firstValue.join(""));
-    secondValue = parseInt(secondValue.join(""));
-    return (display.textContent = firstValue + secondValue);
   }
+  if (Array.isArray(secondValue)) {
+    secondValue = parseInt(secondValue.join(""));
+  }
+  return (display.textContent = firstValue + secondValue);
 }
 
 function substract(firstValue, secondValue) {
-  firstValue = parseInt(firstValue.join(""));
-  secondValue = parseInt(secondValue.join(""));
+  if (Array.isArray(firstValue)) {
+    firstValue = parseInt(firstValue.join(""));
+  }
+  if (Array.isArray(secondValue)) {
+    secondValue = parseInt(secondValue.join(""));
+  }
+  console.log(firstValue);
+  console.log(secondValue);
+  console.log(operator);
   return (display.textContent = firstValue - secondValue);
 }
 
 function multiply(firstValue, secondValue) {
-  firstValue = parseInt(firstValue.join(""));
-  secondValue = parseInt(secondValue.join(""));
+  if (Array.isArray(firstValue)) {
+    firstValue = parseInt(firstValue.join(""));
+  }
+  if (Array.isArray(secondValue)) {
+    secondValue = parseInt(secondValue.join(""));
+  }
   return (display.textContent = firstValue * secondValue);
 }
 
 function divide(firstValue, secondValue) {
-  firstValue = parseInt(firstValue.join(""));
-  secondValue = parseInt(secondValue.join(""));
+  if (Array.isArray(firstValue)) {
+    firstValue = parseInt(firstValue.join(""));
+  }
+  if (Array.isArray(secondValue)) {
+    secondValue = parseInt(secondValue.join(""));
+  }
   return (display.textContent = firstValue / secondValue);
 }
