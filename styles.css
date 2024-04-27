@@ -1,11 +1,32 @@
+body {
+  font-family: "Orbitron", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+#container {
+  width: 300px;
+  margin: auto;
+  background-color: cadetblue;
+}
+
 #display {
-  width: 200px;
+  font-size: 30px;
+  color: black;
   height: 50px;
   margin: 20px;
-  border: 1px solid black;
+  padding: 10px;
+  border: 1.5px dashed black;
+  background-color: #a2bbcf;
+}
+
+#btn-container {
+  margin: 20px;
 }
 
 button {
+  font-family: "Orbitron", sans-serif;
+  border: 1.5px double black;
   width: 50px;
   height: 50px;
   margin: 5px;
