@@ -57,6 +57,7 @@ clearBtn.addEventListener("click", clear);
 
 function clear() {
   operatorFlag = false;
+  operator = "";
   display.textContent = "";
   firstValue = [];
   secondValue = [];
@@ -64,7 +65,11 @@ function clear() {
 
 function operatorFlagAdd() {
   operatorFlag = true;
-  if (operator != "add") {
+  if (
+    operator == "substract" ||
+    operator == "multiply" ||
+    operator == "divide"
+  ) {
     firstValue = operate();
     secondValue = [];
     operator = "add";
@@ -75,7 +80,7 @@ function operatorFlagAdd() {
 
 function operatorFlagSub() {
   operatorFlag = true;
-  if (operator != "substract") {
+  if (operator == "add" || operator == "multiply" || operator == "divide") {
     firstValue = operate();
     secondValue = [];
     operator = "substract";
@@ -86,7 +91,7 @@ function operatorFlagSub() {
 
 function operatorFlagMultiply() {
   operatorFlag = true;
-  if (operator != "multiply") {
+  if (operator == "substract" || operator == "add" || operator == "divide") {
     firstValue = operate();
     secondValue = [];
     operator = "multiply";
@@ -97,7 +102,7 @@ function operatorFlagMultiply() {
 
 function operatorFlagDivide() {
   operatorFlag = true;
-  if (operator != "divide") {
+  if (operator == "substract" || operator == "multiply" || operator == "add") {
     firstValue = operate();
     secondValue = [];
     operator = "divide";
@@ -277,9 +282,6 @@ function substract(firstValue, secondValue) {
   if (Array.isArray(secondValue)) {
     secondValue = parseInt(secondValue.join(""));
   }
-  console.log(firstValue);
-  console.log(secondValue);
-  console.log(operator);
   return (display.textContent = firstValue - secondValue);
 }
 
@@ -290,8 +292,13 @@ function multiply(firstValue, secondValue) {
   if (Array.isArray(secondValue)) {
     secondValue = parseInt(secondValue.join(""));
   }
-  return (display.textContent = firstValue * secondValue);
+  let result = +(firstValue * secondValue).toFixed(2);
+  return (display.textContent = result);
 }
+
+// Note the plus sign that drops any "extra" zeroes at the end.
+// It changes the result (which is a string) into a number again (think "0 + foo"),
+// which means that it uses only as many digits as necessary.
 
 function divide(firstValue, secondValue) {
   if (Array.isArray(firstValue)) {
@@ -300,5 +307,6 @@ function divide(firstValue, secondValue) {
   if (Array.isArray(secondValue)) {
     secondValue = parseInt(secondValue.join(""));
   }
-  return (display.textContent = firstValue / secondValue);
+  let result = +(firstValue / secondValue).toFixed(2);
+  return (display.textContent = result);
 }
